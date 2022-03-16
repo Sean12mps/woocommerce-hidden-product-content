@@ -31,4 +31,4 @@ function wc_hpc_acf_add_save_point( $paths ) {
 
 	return $paths;
 }
-add_filter( 'acf/settings/save_json', 'wc_hpc_acf_add_save_point' );
+// add_filter( 'acf/settings/save_json', 'wc_hpc_acf_add_save_point' );
