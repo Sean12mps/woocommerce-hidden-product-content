@@ -89,7 +89,7 @@ function wc_hpc_login() {
 		$customer_email     = wc_hpc_get_param( 'email', $nonce );
 		$product_id         = wc_hpc_get_param( 'product_id', $nonce );
 		$has_bought_product = wc_customer_bought_product( $customer_email, '', $product_id ) ? true : false;
-		$message            = __( 'Server is busy, please try again later', 'wchpc' );
+		$message            = __( 'Server is busy, please try again later', 'wc_hpc' );
 
 		if ( $has_bought_product ) {
 
@@ -100,7 +100,8 @@ function wc_hpc_login() {
 
 				$account_page_url = get_permalink( get_option( 'woocommerce_myaccount_page_id' ) );
 
-				$message = wp_sprintf( 'You\'re already a member. Please <a href="%s">login</a>.', $account_page_url );
+				$_message = get_field( 'wc_hpc_notice_already_customer', 'option' );
+				$message  = $_message ? $_message : wp_sprintf( '<p>You\'re already a member. Please <a href="%s">login</a>.</p>', $account_page_url );
 
 			} else {
 
@@ -119,33 +120,46 @@ function wc_hpc_login() {
 
 						if ( ! is_wp_error( $key ) ) {
 
-							$login_url = add_query_arg(
-								array(
-									'wc_hpc_key'   => $key,
-									'wc_hpc_email' => rawurlencode( $user->user_email ),
-									'wc_hpc_pid'   => $product_id,
-								),
-								get_permalink( $product_id )
-							);
+							// WC Product.
+							$product = wc_get_product( $product_id );
 
-							$headers = array(
-								'From: Admin <no-reply@' . wp_parse_url( get_site_url(), PHP_URL_HOST ) . '>',
-								'Content-type: text/html; charset=utf-8',
-							);
+							if ( $product instanceof WC_Product ) {
 
-							$mail_title = 'Hidden Content for Product: ' . $product_id;
+								$login_url = add_query_arg(
+									array(
+										'wc_hpc_key'   => $key,
+										'wc_hpc_email' => rawurlencode( $user->user_email ),
+										'wc_hpc_pid'   => $product_id,
+									),
+									get_permalink( $product_id )
+								);
 
-							$message = 'You may use this link to view the hidden content. <a href="' . $login_url . '">' . $login_url . '</a>';
+								$headers = array(
+									'From: Admin <no-reply@' . wp_parse_url( get_site_url(), PHP_URL_HOST ) . '>',
+									'Content-type: text/html; charset=utf-8',
+								);
 
-							$mail = wp_mail( $user->user_email, $mail_title, $message, $headers );
+								$_mail_title = get_field( 'wc_hpc_email_title', 'option' );
 
-							if ( $mail ) {
+								$mail_title  = $_mail_title ? $_mail_title : wp_sprintf( '%s: %s', __( 'Hidden Content for Product: ', 'wc_hpc' ), $product_id );
+								$mail_title .= ' - ' . $product->get_title();
 
-								$message = __( 'We sent a message to your email, please review to see the content.', 'wchpc' );
+								$_message = get_field( 'wc_hpc_email_message', 'option' );
+								$message  = $_message ? $_message : __( 'You may use this link to view the hidden content. ', 'wc_hpc' );
+								$message .= wp_sprintf( '<p><a href="%s">%s</a></p>', $login_url );
 
-							} else {
+								$mail = wp_mail( $user->user_email, $mail_title, $message, $headers );
 
-								$message = __( 'We are unable to send you an email, please contact support.', 'wchpc' );
+								if ( $mail ) {
+
+									$_message = get_field( 'wc_hpc_notice_email_sent', 'option' );
+									$message  = $_message ? $_message : wp_sprintf( '<p>%s</p>', __( 'We sent a message to your email, please review to see the content.', 'wc_hpc' ) );
+
+								} else {
+
+									$_message = get_field( 'wc_hpc_notice_email_error', 'option' );
+									$message  = $_message ? $_message : wp_sprintf( '<p>%s</p>', __( 'We are unable to send you an email, please contact support.', 'wc_hpc' ) );
+								}
 							}
 						}
 					}
@@ -153,7 +167,8 @@ function wc_hpc_login() {
 			}
 		} else {
 
-			$message = __( 'You haven\'t purchased the product yet.', 'wchpc' );
+			$_message = get_field( 'wc_hpc_notice_no_order_found', 'option' );
+			$message  = $_message ? $_message : wp_sprintf( '<p>%s</p>', __( 'You haven\'t completed any purchase for this product yet.', 'wc_hpc' ) );
 		}
 
 		$response = array(

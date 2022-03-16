@@ -1,0 +1,228 @@
+{
+    "key": "group_6231681a91e67",
+    "title": "Option: WooCommerce Hidden Product Content",
+    "fields": [
+        {
+            "key": "field_62318b672584d",
+            "label": "Notices",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_6231683cb2dc2",
+            "label": "Notice for logged in Customers",
+            "name": "wc_hpc_notice_for_customer",
+            "type": "wysiwyg",
+            "instructions": "Will be shown when a customer is looking at an unpurchased product.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_62316c2fb2dc3",
+            "label": "Notice for Users (not logged in)",
+            "name": "wc_hpc_notice_for_users",
+            "type": "wysiwyg",
+            "instructions": "Will be shown when a non logged-in user is looking at an unpurchased product.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_62316c67b2dc4",
+            "label": "Submit button label",
+            "name": "wc_hpc_emailme_button_label",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Request Access",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_62317240d7ead",
+            "label": "Response if user is already a Customer",
+            "name": "wc_hpc_notice_already_customer",
+            "type": "wysiwyg",
+            "instructions": "Will be shown when submitted email is already registered as Customer.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_623173a9d7eae",
+            "label": "Response if email successfully sent",
+            "name": "wc_hpc_notice_email_sent",
+            "type": "wysiwyg",
+            "instructions": "Will be shown when submitted email is not registered as Customer and found in completed order.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_623173bbd7eaf",
+            "label": "Response if email failed",
+            "name": "wc_hpc_notice_email_error",
+            "type": "wysiwyg",
+            "instructions": "Will be shown when email is not sent (Error).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_623176c4e25c3",
+            "label": "Response if email is not found in any order",
+            "name": "wc_hpc_notice_no_order_found",
+            "type": "wysiwyg",
+            "instructions": "Will be shown when the email provided is not found in any completed order.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_62318b762584e",
+            "label": "Email",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_623179c02584b",
+            "label": "Email Title",
+            "name": "wc_hpc_email_title",
+            "type": "text",
+            "instructions": "Title of the email sent to Customers",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_62318b412584c",
+            "label": "Email Message",
+            "name": "wc_hpc_email_message",
+            "type": "wysiwyg",
+            "instructions": "Content of the email sent to Customers, before the login link.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-options"
+            }
+        ]
+    ],
+    "menu_order": 10,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1647414148
+}
