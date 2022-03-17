@@ -27,12 +27,9 @@ console.log(wc_hpc_vars);
 			dataType: "JSON",
 			success: function ( response ) {
 
-				console.log(response);
-				console.log($( el ).parents( '.wc_hpc_email_login' ).find( '.wc_hpc_login_form' ));
-
 				$( el ).removeAttr( 'disabled' );
 
-				$( el ).parents( '.wc_hpc_email_login' ).find( '.wc_hpc_login_action p' ).html( response.message );
+				$( el ).parents( '.wc_hpc_email_login' ).find( '.wc_hpc_login_response' ).html( response.message );
 
 				if ( response.valid ) {
 

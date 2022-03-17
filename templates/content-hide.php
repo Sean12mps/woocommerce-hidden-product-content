@@ -52,6 +52,7 @@ $button_label  = $button_label ? $button_label : $_button_label;
 		</div>
 		<div class="wc_hpc_login_action">
 			<button class="wc_hpc_submit"><?php echo esc_html( $button_label ); ?></button>
+			<div class="wc_hpc_login_response"></div>
 		</div>
 	</div>
 <?php endif; ?>

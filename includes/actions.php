@@ -169,6 +169,7 @@ function wc_hpc_login() {
 
 			$_message = get_field( 'wc_hpc_notice_no_order_found', 'option' );
 			$message  = $_message ? $_message : wp_sprintf( '<p>%s</p>', __( 'You haven\'t completed any purchase for this product yet.', 'wc_hpc' ) );
+			$message .= do_shortcode( "[wc_hpc_add_to_cart product_id='$product_id']" );
 		}
 
 		$response = array(
