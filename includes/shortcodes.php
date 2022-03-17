@@ -43,3 +43,38 @@ function wc_hpc_shortcode( $atts, $content = '' ) {
 	return ob_get_clean();
 }
 add_shortcode( 'wc_hpc', 'wc_hpc_shortcode' );
+
+/**
+ * Hidden content shortcode.
+ *
+ * @param array  $atts     Shortcode params.
+ * @param string $content  Hidden content.
+ * @return string
+ */
+function wc_hpc_add_to_cart_shortcode( $atts, $content = '' ) {
+
+	$atts = shortcode_atts(
+		array(
+			'product_id' => '',
+		),
+		$atts,
+		'wc_hpc'
+	);
+
+	$product = false;
+
+	if ( $atts['product_id'] ) {
+
+		$product = wc_get_product( $atts['product_id'] );
+
+	} else {
+
+		$product = wc_get_product( get_the_ID() );
+	}
+
+	if ( $product && method_exists( $product, 'get_ID' ) ) {
+
+		return do_shortcode( "[add_to_cart id='{$product->get_ID()}']" );
+	}
+}
+add_shortcode( 'wc_hpc_add_to_cart', 'wc_hpc_add_to_cart_shortcode' );
