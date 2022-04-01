@@ -1,8 +1,5 @@
 jQuery( document ).ready( function ( $ ) {
 
-console.log('1.0.2');
-console.log(wc_hpc_vars);
-
 	$( '.wc_hpc_email_login .wc_hpc_submit' ).on( 'click', function( e ) {
 
 		e.preventDefault();
@@ -14,6 +11,7 @@ console.log(wc_hpc_vars);
 		;
 
 		$( el ).attr( 'disabled', 'disabled' );
+		$( el ).find( '.wc_hpc_loader' ).toggleClass( 'hide' );
 
 		$.ajax( {
 			type: "POST",
@@ -28,6 +26,7 @@ console.log(wc_hpc_vars);
 			success: function ( response ) {
 
 				$( el ).removeAttr( 'disabled' );
+				$( el ).find( '.wc_hpc_loader' ).toggleClass( 'hide' );
 
 				$( el ).parents( '.wc_hpc_email_login' ).find( '.wc_hpc_login_response' ).html( response.message );
 
@@ -40,4 +39,15 @@ console.log(wc_hpc_vars);
 			}
 		} );
 	} )
+
+	$( 'body' ).on( 'click', '.wchpc-scroll', function( e ) {
+
+		e.preventDefault();
+
+		const elTarget = $( this ).attr( 'href' );
+
+		$( [ document.documentElement, document.body]  ).animate( {
+			scrollTop: $( elTarget ).offset().top
+		}, 2000);
+	} );
 } );

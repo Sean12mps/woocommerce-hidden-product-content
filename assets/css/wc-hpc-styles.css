@@ -1,0 +1,22 @@
+.wc_hpc_login_form [name="wc_hpc-customer_email"] {
+	display: inline-block;
+	width: 40%;
+}
+.wc_hpc_login_form {
+	margin-bottom: 24px;
+}
+.wc_hpc_login_action {
+	display: inline-block;
+}
+.wc_hpc_loader {
+	-webkit-animation: spin 1s ease-in-out infinite;
+	animation: spin 1s ease-in-out infinite;
+	background-size: cover;
+	width: 20px;
+	height: 20px;
+	vertical-align: bottom;
+	display: inline-block;
+}
+.wc_hpc_loader.hide {
+	display: none;
+}

@@ -23,6 +23,7 @@ $wc_hpc_constants = array(
 	'WC_HPC_DIR_ACF' => plugin_dir_path( __FILE__ ) . '/acf-json',
 	'WC_HPC_DIR_TMP' => plugin_dir_path( __FILE__ ) . '/templates',
 	'WC_HPC_DIR_JS'  => plugin_dir_url( __FILE__ ) . '/assets/js',
+	'WC_HPC_DIR_CSS' => plugin_dir_url( __FILE__ ) . '/assets/css',
 );
 
 foreach ( $wc_hpc_constants as $key => $val ) {

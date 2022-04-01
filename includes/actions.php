@@ -44,6 +44,13 @@ add_action( 'wc_hpc_template_content_hidden', 'wc_hpc_template_hide_content', 10
  */
 function wc_hpc_register_scripts() {
 
+	wp_register_style(
+		'wc_hpc_styles',
+		WC_HPC_DIR_CSS . '/wc-hpc-styles.css',
+		array(),
+		'1.0.0'
+	);
+
 	wp_register_script(
 		'wc_hpc_scripts',
 		WC_HPC_DIR_JS . '/wc-hpc-scripts.js',
@@ -63,6 +70,7 @@ function wc_hpc_enqueue_scripts() {
 
 	if ( is_woocommerce() ) {
 
+		wp_enqueue_style( 'wc_hpc_styles' );
 		wp_enqueue_script( 'wc_hpc_scripts' );
 
 		$variables = array(
@@ -169,7 +177,7 @@ function wc_hpc_login() {
 
 			$_message = get_field( 'wc_hpc_notice_no_order_found', 'option' );
 			$message  = $_message ? $_message : wp_sprintf( '<p>%s</p>', __( 'You haven\'t completed any purchase for this product yet.', 'wc_hpc' ) );
-			$message .= do_shortcode( "[wc_hpc_add_to_cart product_id='$product_id']" );
+			$message .= apply_filters( 'wc_hpc_cta_purchase_product', wp_sprintf( '<a href="%s" class="wchpc-scroll">%s</a>', '#product-' . $product_id, __( 'Purchase product', 'wc_hpc' ) ) );
 		}
 
 		$response = array(

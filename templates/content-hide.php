@@ -45,14 +45,18 @@ $button_label  = $button_label ? $button_label : $_button_label;
 
 	<div class="wc_hpc_email_login">
 		<div class="wc_hpc_login_form">
-			<label for="customer-email"><strong><?php esc_html_e( 'Email', 'wc_hpc' ); ?></strong></label>
-			<br>
-			<input type="email" name="wc_hpc-customer_email" required>
 			<input type="hidden" name="wc_hpc-product_id" value="<?php echo esc_attr( get_the_ID() ); ?>">
+			<input type="email" name="wc_hpc-customer_email" required placeholder="Email">
+			<div class="wc_hpc_login_action">
+				<button class="wc_hpc_submit" style="position: relative;">
+					<?php echo esc_html( $button_label ); ?>
+					<span
+						class="wc_hpc_loader hide"
+						style="background: url(<?php echo esc_attr( plugins_url( 'assets/images/icons/loader.svg', WC_PLUGIN_FILE ) ); ?>) center center;"
+					></span>
+				</button>
+			</div>
 		</div>
-		<div class="wc_hpc_login_action">
-			<button class="wc_hpc_submit"><?php echo esc_html( $button_label ); ?></button>
-			<div class="wc_hpc_login_response"></div>
-		</div>
+		<div class="wc_hpc_login_response"></div>
 	</div>
 <?php endif; ?>
